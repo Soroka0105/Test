@@ -1,4 +1,4 @@
-
+<<<<<<< HEAD
 /* input {
   background-color: #eee;
   color: #333;
@@ -48,10 +48,54 @@
   display: inline-block;
   font-size: 16px;
 }
-
+=======
 /* input {
   background-color: #eee;
   color: #333;
   border: 2px solid #ccc;
   padding: 10px;
 } */
+.load-more {
+  display: inline-block;
+  background-color: black;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin-left: 40%;
+}
+.load-more-hiden {
+  display: none;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.img {
+  border-radius: 50px;
+  height: 300px;
+}
+.search-form {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.searchbtn {
+  background-color: black;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+>>>>>>> a9db8fb (sadasd)
