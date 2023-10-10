@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://Soroka0105.github.io/test",
+  "homepage": "https://Soroka0105.github.io/Test",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /test/"
+    "build": "parcel build src/*.html --public-url /Test/"
   },
   "repository": {
     "type": "git",
