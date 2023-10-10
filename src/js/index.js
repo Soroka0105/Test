@@ -5,7 +5,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { createMarkUp, elms } from './Markup';
 let page = 1;
-let perPage = 40;
+const perPage = 40;
 let lightbox = new SimpleLightbox('.gallery a', {});
 
 elms.form.addEventListener('submit', handlerSubmit);
@@ -13,6 +13,7 @@ elms.loadMoreBtn.addEventListener('click', loadMoreHandler);
 
 async function handlerSubmit(evt) {
   evt.preventDefault();
+  page = 1;
   const params = new URLSearchParams({
     key: elms.APIKEY,
     q: elms.input.value,
@@ -24,6 +25,7 @@ async function handlerSubmit(evt) {
   });
   try {
     elms.gallery.innerHTML = ''
+    elms.form.reset()
     elms.loadMoreBtn.classList.replace('load-more', 'load-more-hiden');
     const responce = await axios.get(`${elms.BASIC_URL}?${params}`);
     console.log(responce);
@@ -45,7 +47,6 @@ async function handlerSubmit(evt) {
 
 async function loadMoreHandler() {
   page += 1;
-//   perPage += 20;
   const params = new URLSearchParams({
     key: elms.APIKEY,
     q: elms.input.value,
@@ -55,11 +56,14 @@ async function loadMoreHandler() {
     per_page: perPage,
     page: page,
   });
-
+  
   try {
+    
     const responce = await axios.get(`${elms.BASIC_URL}?${params}`);
     console.log(responce);
+    console.log(responce.data.hits);
     console.log(page);
+    // console.log(responce.status);
     createMarkUp(responce.data.hits);
     lightbox.refresh();
     if (responce.data.hits.length === 0) {
@@ -67,10 +71,17 @@ async function loadMoreHandler() {
         'Sorry, there are no images matching your search query. Please try again.'
       );
     }
-    // if (page === 5) {
-    //   elms.loadMoreBtn.classList.replace('load-more', 'load-more-hiden');
+    // if (responce.status === 400) {
+    //  throw new Error("error")
     // }
+    
   } catch (error) {
+    elms.loadMoreBtn.classList.replace('load-more', 'load-more-hiden')
+    Notiflix.Notify.failure(
+      'We are sorry, but you have reached the end of search results.'
+    );
+    
+
     console.error(error);
   }
 }
