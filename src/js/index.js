@@ -3,7 +3,7 @@ import Notiflix from 'notiflix';
 import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import { createMarkUp, elms } from './api';
+import { createMarkUp, elms } from './Markup';
 let page = 1;
 let perPage = 40;
 let lightbox = new SimpleLightbox('.gallery a', {});
@@ -23,6 +23,8 @@ async function handlerSubmit(evt) {
     page: page,
   });
   try {
+    elms.gallery.innerHTML = ''
+    elms.loadMoreBtn.classList.replace('load-more', 'load-more-hiden');
     const responce = await axios.get(`${elms.BASIC_URL}?${params}`);
     console.log(responce);
     createMarkUp(responce.data.hits);
